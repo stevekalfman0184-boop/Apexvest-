@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apexvest — Grow Your Wealth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:     #0F1923;
+  --ink2:    #1C2B3A;
+  --surface: #FFFFFF;
+  --border:  #E4EAF0;
+  --muted:   #7B8FA6;
+  --text:    #0F1923;
+  --gold:    #B8873A;
+  --gold-lt: #D4A85A;
+  --gold-bg: #FBF5EA;
+  --teal:    #0B7285;
+  --teal-lt: #0E9DB3;
+  --teal-bg: #EAF6F8;
+  --green:   #1A7F4E;
+  --green-lt:#22A868;
+  --green-bg:#E8F7F0;
+  --red:     #C0392B;
+  --red-bg:  #FDECEA;
+  --bg:      #F4F7FA;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* ── NAV ── */
+nav{
+  background:var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  height:60px;
+  position:sticky;top:0;z-index:100;
+}
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.5px;
+}
+.logo em{color:var(--gold-lt);font-style:normal}
+nav ul{display:flex;gap:4px;list-style:none}
+nav ul a{
+  display:block;padding:7px 14px;border-radius:6px;
+  color:rgba(255,255,255,.6);text-decoration:none;
+  font-size:13px;font-weight:500;transition:all .15s;
+}
+nav ul a:hover,nav ul a.active{background:rgba(255,255,255,.1);color:#fff}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn{
+  padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;
+  cursor:pointer;border:none;transition:all .15s;
+}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.15)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--gold-lt)}
+.avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--gold);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;
+}
+
+/* ── HERO BANNER ── */
+.hero{
+  background:var(--ink);
+  background-image:radial-gradient(ellipse at 80% 50%, rgba(184,135,58,.18) 0%, transparent 65%);
+  padding:48px 40px 52px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:40px;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold-lt);margin-bottom:10px;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:38px;font-weight:800;
+  color:#fff;letter-spacing:-1px;line-height:1.15;
+  margin-bottom:14px;
+}
+.hero-title span{color:var(--gold-lt)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:480px;line-height:1.6}
+.hero-ctas{display:flex;gap:12px;margin-top:24px}
+.btn-lg{padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.btn-lg-gold{background:var(--gold);color:#fff}
+.btn-lg-gold:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.btn-lg-outline{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:#fff}
+.btn-lg-outline:hover{border-color:rgba(255,255,255,.5)}
+
+/* Hero card cluster */
+.hero-cards{display:flex;flex-direction:column;gap:12px;min-width:260px}
+.mini-card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:14px 18px;backdrop-filter:blur(8px);
+}
+.mini-card-label{font-size:11px;color:rgba(255,255,255,.45);font-weight:500;margin-bottom:4px}
+.mini-card-value{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:#fff}
+.mini-card-delta{font-size:11px;font-weight:600;margin-top:3px}
+.up{color:#4ADE80}.dn{color:#F87171}
+
+/* ── MAIN LAYOUT ── */
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 60px - 172px)}
+aside{
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  padding:24px 14px;
+}
+.aside-sect{
+  font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+  padding:0 8px;margin:20px 0 6px;
+}
+.aside-sect:first-child{margin-top:0}
+.slink{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 10px;border-radius:8px;
+  color:var(--muted);text-decoration:none;font-size:13px;
+  font-weight:500;cursor:pointer;margin-bottom:2px;
+  transition:all .15s;
+}
+.slink:hover,.slink.active{background:var(--gold-bg);color:var(--gold)}
+.slink.active svg{stroke:var(--gold)}
+.sbadge{
+  margin-left:auto;background:var(--gold);color:#fff;
+  font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;
+}
+
+main{padding:32px 32px 48px}
+
+/* ── GRID HELPERS ── */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px}
+
+/* ── CARDS ── */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:22px;
+}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.card-title{font-size:14px;font-weight:700;color:var(--text)}
+.card-link{font-size:12px;color:var(--teal);text-decoration:none;font-weight:600}
+.card-link:hover{color:var(--teal-lt)}
+
+/* ── STAT CARDS ── */
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:20px;transition:box-shadow .2s,border-color .2s;
+}
+.stat-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(184,135,58,.1)}
+.stat-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.stat-val{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;letter-spacing:-1px;color:var(--text);margin-bottom:6px}
+.stat-note{font-size:12px;font-weight:600;display:flex;align-items:center;gap:4px}
+
+/* ── GOAL PROGRESS ── */
+.goal-item{padding:14px 0;border-bottom:1px solid var(--border)}
+.goal-item:last-child{border-bottom:none}
+.goal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.goal-name{font-size:13px;font-weight:600}
+.goal-pct{font-size:12px;font-weight:700;color:var(--gold)}
+.goal-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.goal-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
+.goal-meta{font-size:11px;color:var(--muted)}
+
+/* ── PLAN CARDS ── */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.plan-card{
+  border:1.5px solid var(--border);border-radius:14px;padding:20px;
+  background:var(--surface);transition:all .2s;cursor:pointer;position:relative;overflow:hidden;
+}
+.plan-card:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(184,135,58,.12);transform:translateY(-2px)}
+.plan-card.featured{border-color:var(--gold);background:linear-gradient(135deg,#FBF5EA 0%,#fff 100%)}
+.plan-ribbon{
+  position:absolute;top:12px;right:-22px;
+  background:var(--gold);color:#fff;font-size:10px;font-weight:700;
+  padding:3px 28px;transform:rotate(35deg);letter-spacing:.06em;
+}
+.plan-icon{font-size:28px;margin-bottom:12px}
+.plan-name{font-size:15px;font-weight:700;margin-bottom:4px}
+.plan-rate{font-family:'DM Mono',monospace;font-size:28px;font-weight:500;color:var(--gold);margin:8px 0}
+.plan-rate span{font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:500}
+.plan-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:16px}
+.plan-features{list-style:none}
+.plan-features li{font-size:12px;color:var(--muted);padding:3px 0;display:flex;gap:6px;align-items:center}
+.plan-features li::before{content:"✓";color:var(--green);font-weight:700}
+.plan-btn{
+  width:100%;margin-top:16px;padding:10px;border-radius:8px;
+  font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s;
+}
+.plan-btn-gold{background:var(--gold);color:#fff}
+.plan-btn-gold:hover{background:var(--gold-lt)}
+.plan-btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.plan-btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── CALCULATOR ── */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{
+  width:100%;padding:10px 14px;border:1.5px solid var(--border);
+  border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;
+  color:var(--text);background:var(--bg);outline:none;transition:border .15s;
+}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.calc-result{
+  background:var(--ink);border-radius:12px;padding:22px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.calc-result-lbl{font-size:11px;color:rgba(255,255,255,.45);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.calc-result-val{font-family:'DM Mono',monospace;font-size:34px;font-weight:500;color:#fff;margin-bottom:8px}
+.calc-result-break{display:flex;flex-direction:column;gap:6px;margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
+.calc-row{display:flex;justify-content:space-between;font-size:12px}
+.calc-row-lbl{color:rgba(255,255,255,.45)}
+.calc-row-val{color:#fff;font-family:'DM Mono',monospace;font-weight:500}
+.calc-btn{
+  width:100%;padding:11px;border-radius:8px;background:var(--gold);
+  color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;
+  transition:background .15s;margin-top:4px;
+}
+.calc-btn:hover{background:var(--gold-lt)}
+
+/* ── TRANSACTIONS TABLE ── */
+table{width:100%;border-collapse:collapse}
+thead th{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;
+}
+tbody tr{transition:background .1s;cursor:default}
+tbody tr:hover{background:#FAFBFC}
+tbody td{padding:13px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:none}
+.mono{font-family:'DM Mono',monospace}
+.chip{display:inline-block;padding:3px 9px;border-radius:5px;font-size:11px;font-weight:700}
+.chip-green{background:var(--green-bg);color:var(--green)}
+.chip-gold{background:var(--gold-bg);color:var(--gold)}
+.chip-teal{background:var(--teal-bg);color:var(--teal)}
+.chip-red{background:var(--red-bg);color:var(--red)}
+.tx-icon{
+  width:34px;height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+
+/* ── CHART ── */
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:8px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.bar{
+  width:100%;border-radius:5px 5px 0 0;
+  background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+  transition:opacity .2s;cursor:pointer;
+}
+.bar:hover{opacity:.8}
+.bar-lbl{font-size:10px;color:var(--muted);font-weight:500}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.4);
+  text-align:center;padding:20px;font-size:12px;
+}
+footer strong{color:var(--gold-lt)}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  aside{display:none}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr}
+  .calc-grid{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+  .hero-cards{display:none}
+  nav ul{display:none}
+}
+
+/* ── AUTH OVERLAY ── */
+#auth-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(15,25,35,.85);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+.auth-box{
+  background:#fff;border-radius:20px;
+  width:100%;max-width:420px;overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,.25);
+}
+.auth-header{
+  background:var(--ink);
+  background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.25) 0%,transparent 70%);
+  padding:32px 36px 28px;text-align:center;
+}
+.auth-logo{
+  font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:#fff;
+}
+.auth-logo em{color:var(--gold-lt);font-style:normal}
+.auth-tagline{font-size:13px;color:rgba(255,255,255,.45);margin-top:6px}
+.auth-body{padding:32px 36px}
+.auth-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-bottom:24px}
+.auth-tab{
+  flex:1;padding:10px;text-align:center;font-size:14px;font-weight:700;
+  cursor:pointer;border:none;background:none;color:var(--muted);
+  border-bottom:2.5px solid transparent;margin-bottom:-1.5px;transition:all .15s;
+}
+.auth-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.auth-form{display:none}
+.auth-form.active{display:block}
+.auth-field{margin-bottom:16px}
+.auth-field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.07em}
+.auth-field input{
+  width:100%;padding:11px 14px;border:1.5px solid var(--border);
+  border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;
+  color:var(--text);outline:none;transition:border .15s;background:var(--bg);
+}
+.auth-field input:focus{border-color:var(--gold)}
+.auth-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.auth-btn{
+  width:100%;padding:13px;border-radius:10px;border:none;
+  background:var(--gold);color:#fff;font-size:15px;font-weight:700;
+  cursor:pointer;transition:background .15s;margin-top:4px;
+}
+.auth-btn:hover{background:var(--gold-lt)}
+.auth-error{
+  background:var(--red-bg);color:var(--red);
+  border-radius:8px;padding:10px 14px;font-size:13px;font-weight:500;
+  margin-bottom:14px;display:none;
+}
+.auth-success{
+  background:var(--green-bg);color:var(--green);
+  border-radius:8px;padding:10px 14px;font-size:13px;font-weight:500;
+  margin-bottom:14px;display:none;
+}
+.auth-footer-note{text-align:center;font-size:12px;color:var(--muted);margin-top:16px}
+.auth-footer-note a{color:var(--gold);text-decoration:none;font-weight:600}
+
+/* toast */
+#toast{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:12px 24px;border-radius:30px;
+  font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:all .3s;pointer-events:none;
+  white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- AUTH OVERLAY -->
+<div id="auth-overlay">
+  <div class="auth-box">
+    <div class="auth-header">
+      <div class="auth-logo">Apex<em>vest</em></div>
+      <div class="auth-tagline">Your money, working harder for you.</div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
+        <button class="auth-tab" onclick="switchTab('signup')">Create Account</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="auth-form active" id="form-login">
+        <div id="login-error" class="auth-error"></div>
+        <div class="auth-field">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="you@example.com"/>
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input type="password" id="login-pass" placeholder="••••••••"/>
+        </div>
+        <button class="auth-btn" onclick="doLogin()">Sign In to Apexvest</button>
+        <div class="auth-footer-note">No account? <a href="#" onclick="switchTab('signup')">Create one free</a></div>
+      </div>
+
+      <!-- SIGN UP -->
+      <div class="auth-form" id="form-signup">
+        <div id="signup-error" class="auth-error"></div>
+        <div id="signup-success" class="auth-success"></div>
+        <div class="auth-row">
+          <div class="auth-field">
+            <label>First Name</label>
+            <input type="text" id="signup-first" placeholder="Alex"/>
+          </div>
+          <div class="auth-field">
+            <label>Last Name</label>
+            <input type="text" id="signup-last" placeholder="Smith"/>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label>Email Address</label>
+          <input type="email" id="signup-email" placeholder="you@example.com"/>
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input type="password" id="signup-pass" placeholder="Min. 6 characters"/>
+        </div>
+        <div class="auth-field">
+          <label>Confirm Password</label>
+          <input type="password" id="signup-pass2" placeholder="Repeat password"/>
+        </div>
+        <button class="auth-btn" onclick="doSignup()">Create My Account</button>
+        <div class="auth-footer-note">Already have an account? <a href="#" onclick="switchTab('login')">Sign in</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Apex<em>vest</em></div>
+  <ul>
+    <li><a href="#" class="active">Overview</a></li>
+    <li><a href="#">Invest</a></li>
+    <li><a href="#">My Plans</a></li>
+    <li><a href="#">Goals</a></li>
+    <li><a href="#">Withdraw</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn btn-ghost">Support</button>
+    <button class="btn btn-gold">+ Add Money</button>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="avatar" id="nav-avatar">AV</div>
+      <span id="nav-username" style="color:rgba(255,255,255,.7);font-size:13px;font-weight:500"></span>
+    </div>
+    <button class="btn btn-ghost" onclick="doLogout()" style="font-size:12px">Sign Out</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Apexvest Wealth Platform</div>
+    <div class="hero-title">Your money,<br>working <span>harder</span> for you.</div>
+    <div class="hero-sub">Put your money to work with high-yield savings plans, fixed deposits, and managed funds — all in one place. Start from as little as $100.</div>
+    <div class="hero-ctas">
+      <button class="btn-lg btn-lg-gold">Start Investing</button>
+      <button class="btn-lg btn-lg-outline">View Plans</button>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="mini-card">
+      <div class="mini-card-label">Total Invested</div>
+      <div class="mini-card-value">$148,200</div>
+      <div class="mini-card-delta up">▲ +8.4% this year</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-label">Interest Earned</div>
+      <div class="mini-card-value">$12,438</div>
+      <div class="mini-card-delta up">▲ +$843 this month</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-label">Next Payout</div>
+      <div class="mini-card-value">Jul 1, 2026</div>
+      <div class="mini-card-delta" style="color:rgba(255,255,255,.4)">3 days away · $1,240</div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+
+<!-- SIDEBAR -->
+<aside>
+  <div class="aside-sect">Overview</div>
+  <a class="slink active" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Dashboard
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    My Investments
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Fixed Deposits
+    <span class="sbadge">3</span>
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+    Growth Funds
+  </a>
+
+  <div class="aside-sect">Goals</div>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    House Fund
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-7 10 7-10 7-10-7z"/></svg>
+    Education Fund
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+    Retirement
+  </a>
+
+  <div class="aside-sect">Account</div>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    Transactions
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profile
+  </a>
+  <a class="slink" href="#">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Alerts
+    <span class="sbadge">2</span>
+  </a>
+</aside>
+
+<!-- MAIN -->
+<main>
+
+  <!-- STAT CARDS -->
+  <div class="g4">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--gold-bg)">💰</div>
+      <div class="stat-lbl">Total Balance</div>
+      <div class="stat-val">$148,200</div>
+      <div class="stat-note up">▲ +$843 this month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--green-bg)">📈</div>
+      <div class="stat-lbl">Returns Earned</div>
+      <div class="stat-val" style="color:var(--green)">$12,438</div>
+      <div class="stat-note up">▲ 8.4% annualized</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--teal-bg)">🏦</div>
+      <div class="stat-lbl">Active Plans</div>
+      <div class="stat-val">5</div>
+      <div class="stat-note" style="color:var(--muted)">3 fixed · 2 flexible</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#FEF3C7">⏳</div>
+      <div class="stat-lbl">Next Payout</div>
+      <div class="stat-val">$1,240</div>
+      <div class="stat-note" style="color:var(--muted)">Due July 1, 2026</div>
+    </div>
+  </div>
+
+  <!-- GROWTH CHART + GOALS -->
+  <div class="g3">
+
+    <!-- Monthly growth bar chart -->
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Monthly Returns</div>
+        <span style="font-size:12px;color:var(--muted)">Jan – Jun 2026</span>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-col">
+          <div class="bar" style="height:52%"></div>
+          <div class="bar-lbl">Jan</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar" style="height:61%"></div>
+          <div class="bar-lbl">Feb</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar" style="height:58%"></div>
+          <div class="bar-lbl">Mar</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar" style="height:74%"></div>
+          <div class="bar-lbl">Apr</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar" style="height:80%"></div>
+          <div class="bar-lbl">May</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar" style="height:100%"></div>
+          <div class="bar-lbl">Jun</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:24px;margin-top:20px;padding-top:14px;border-top:1px solid var(--border)">
+        <div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">Best Month</div>
+          <div class="mono" style="font-size:15px;font-weight:500;color:var(--green)">+$2,184</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">Avg Monthly</div>
+          <div class="mono" style="font-size:15px;font-weight:500">+$1,074</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">YTD Returns</div>
+          <div class="mono" style="font-size:15px;font-weight:500;color:var(--gold)">+$6,444</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Savings Goals -->
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Savings Goals</div>
+        <a href="#" class="card-link">+ New Goal</a>
+      </div>
+
+      <div class="goal-item">
+        <div class="goal-top">
+          <div class="goal-name">🏠 Dream Home</div>
+          <div class="goal-pct">73%</div>
+        </div>
+        <div class="goal-bar"><div class="goal-fill" style="width:73%"></div></div>
+        <div class="goal-meta">$36,500 of $50,000 · Target: Dec 2026</div>
+      </div>
+
+      <div class="goal-item">
+        <div class="goal-top">
+          <div class="goal-name">🎓 Education</div>
+          <div class="goal-pct">45%</div>
+        </div>
+        <div class="goal-bar"><div class="goal-fill" style="width:45%"></div></div>
+        <div class="goal-meta">$9,000 of $20,000 · Target: Sep 2027</div>
+      </div>
+
+      <div class="goal-item">
+        <div class="goal-top">
+          <div class="goal-name">✈️ Vacation Fund</div>
+          <div class="goal-pct">91%</div>
+        </div>
+        <div class="goal-bar"><div class="goal-fill" style="width:91%"></div></div>
+        <div class="goal-meta">$4,550 of $5,000 · Target: Aug 2026</div>
+      </div>
+
+      <div class="goal-item">
+        <div class="goal-top">
+          <div class="goal-name">🛡️ Emergency Fund</div>
+          <div class="goal-pct">60%</div>
+        </div>
+        <div class="goal-bar"><div class="goal-fill" style="width:60%"></div></div>
+        <div class="goal-meta">$18,000 of $30,000 · Target: Jan 2027</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT PLANS -->
+  <div style="margin-bottom:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div>
+        <div style="font-size:18px;font-weight:700">Investment Plans</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px">Choose a plan that matches your goal and timeline.</div>
+      </div>
+      <a href="#" class="card-link">Compare all plans →</a>
+    </div>
+    <div class="plans">
+
+      <div class="plan-card">
+        <div class="plan-icon">💵</div>
+        <div class="plan-name">Flex Saver</div>
+        <div class="plan-rate">6.5% <span>p.a.</span></div>
+        <div class="plan-desc">Withdraw anytime without penalty. Perfect for short-term goals and emergency funds.</div>
+        <ul class="plan-features">
+          <li>No lock-in period</li>
+          <li>Minimum $100 to start</li>
+          <li>Monthly interest payouts</li>
+          <li>Instant withdrawals</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline">Open Account</button>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-ribbon">POPULAR</div>
+        <div class="plan-icon">🏆</div>
+        <div class="plan-name">Fixed Growth</div>
+        <div class="plan-rate">11.2% <span>p.a.</span></div>
+        <div class="plan-desc">Lock in a higher rate for 12 months and watch your money compound steadily.</div>
+        <ul class="plan-features">
+          <li>12-month fixed term</li>
+          <li>Minimum $1,000</li>
+          <li>Quarterly compounding</li>
+          <li>Capital guaranteed</li>
+        </ul>
+        <button class="plan-btn plan-btn-gold">Start Earning</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-icon">🚀</div>
+        <div class="plan-name">Apex Growth Fund</div>
+        <div class="plan-rate">15–22% <span>target p.a.</span></div>
+        <div class="plan-desc">Managed diversified fund investing in high-yield assets across multiple markets.</div>
+        <ul class="plan-features">
+          <li>24-month horizon</li>
+          <li>Minimum $5,000</li>
+          <li>Professionally managed</li>
+          <li>Annual dividend option</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline">Learn More</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALCULATOR + TRANSACTIONS -->
+  <div class="g2">
+
+    <!-- Returns Calculator -->
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Returns Calculator</div>
+      </div>
+      <div class="calc-grid">
+        <div>
+          <div class="field">
+            <label>Amount to Invest</label>
+            <input type="number" id="principal" value="10000" min="100"/>
+          </div>
+          <div class="field">
+            <label>Plan</label>
+            <select id="rate">
+              <option value="6.5">Flex Saver — 6.5% p.a.</option>
+              <option value="11.2" selected>Fixed Growth — 11.2% p.a.</option>
+              <option value="18">Apex Fund — 18% target p.a.</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Duration (Months)</label>
+            <input type="number" id="months" value="12" min="1" max="60"/>
+          </div>
+          <button class="calc-btn" onclick="calculate()">Calculate Returns</button>
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-result-lbl">Projected Value</div>
+          <div class="calc-result-val" id="result-total">$11,120</div>
+          <div class="calc-result-break">
+            <div class="calc-row">
+              <span class="calc-row-lbl">Principal</span>
+              <span class="calc-row-val" id="result-principal">$10,000</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-row-lbl">Interest Earned</span>
+              <span class="calc-row-val" id="result-interest" style="color:#4ADE80">+$1,120</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-row-lbl">Effective Rate</span>
+              <span class="calc-row-val" id="result-rate">11.2% p.a.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Recent Transactions</div>
+        <a href="#" class="card-link">View all</a>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="tx-icon" style="background:var(--green-bg)">💸</div></td>
+            <td>
+              <div style="font-weight:600;font-size:13px">Interest Payout</div>
+              <div style="font-size:11px;color:var(--muted)">Fixed Growth · Jun 1</div>
+            </td>
+            <td class="mono up">+$1,120</td>
+            <td><span class="chip chip-green">Received</span></td>
+          </tr>
+          <tr>
+            <td><div class="tx-icon" style="background:var(--gold-bg)">➕</div></td>
+            <td>
+              <div style="font-weight:600;font-size:13px">Top-up</div>
+              <div style="font-size:11px;color:var(--muted)">Flex Saver · May 28</div>
+            </td>
+            <td class="mono" style="color:var(--text)">$5,000</td>
+            <td><span class="chip chip-gold">Invested</span></td>
+          </tr>
+          <tr>
+            <td><div class="tx-icon" style="background:var(--teal-bg)">🔁</div></td>
+            <td>
+              <div style="font-weight:600;font-size:13px">Auto-reinvest</div>
+              <div style="font-size:11px;color:var(--muted)">Apex Fund · May 15</div>
+            </td>
+            <td class="mono" style="color:var(--text)">$843</td>
+            <td><span class="chip chip-teal">Reinvested</span></td>
+          </tr>
+          <tr>
+            <td><div class="tx-icon" style="background:var(--red-bg)">🏧</div></td>
+            <td>
+              <div style="font-weight:600;font-size:13px">Withdrawal</div>
+              <div style="font-size:11px;color:var(--muted)">Flex Saver · Apr 30</div>
+            </td>
+            <td class="mono dn">-$2,000</td>
+            <td><span class="chip chip-red">Withdrawn</span></td>
+          </tr>
+          <tr>
+            <td><div class="tx-icon" style="background:var(--gold-bg)">➕</div></td>
+            <td>
+              <div style="font-weight:600;font-size:13px">New Deposit</div>
+              <div style="font-size:11px;color:var(--muted)">Fixed Growth · Apr 1</div>
+            </td>
+            <td class="mono" style="color:var(--text)">$10,000</td>
+            <td><span class="chip chip-gold">Invested</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<footer>
+  <strong>Apexvest</strong> &nbsp;·&nbsp; Investments are subject to risk. Past returns do not guarantee future performance. &nbsp;·&nbsp; © 2026 Apexvest Financial Ltd.
+</footer>
+
+<script>
+function fmt(n){ return '$' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+
+function calculate(){
+  const p = parseFloat(document.getElementById('principal').value) || 0;
+  const r = parseFloat(document.getElementById('rate').value) / 100;
+  const m = parseInt(document.getElementById('months').value) || 12;
+  const years = m / 12;
+  // Compound quarterly
+  const n = 4;
+  const total = p * Math.pow(1 + r/n, n * years);
+  const interest = total - p;
+  const effectiveRate = document.getElementById('rate').options[document.getElementById('rate').selectedIndex].text.split('—')[1].trim();
+
+  document.getElementById('result-total').textContent = fmt(total);
+  document.getElementById('result-principal').textContent = fmt(p);
+  document.getElementById('result-interest').textContent = '+' + fmt(interest);
+  document.getElementById('result-rate').textContent = effectiveRate;
+}
+
+['principal','rate','months'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calculate);
+  document.getElementById(id).addEventListener('change', calculate);
+});
+
+// Plan card highlight
+document.querySelectorAll('.plan-card').forEach(c => {
+  c.addEventListener('click', function(){
+    document.querySelectorAll('.plan-card').forEach(x => x.style.boxShadow = '');
+    this.style.boxShadow = '0 8px 32px rgba(184,135,58,.22)';
+  });
+});
+
+/* ── AUTH SYSTEM ── */
+function getUsers(){ try{ return JSON.parse(localStorage.getItem('av_users')||'{}'); }catch(e){return{};} }
+function saveUsers(u){ localStorage.setItem('av_users', JSON.stringify(u)); }
+function getSession(){ try{ return JSON.parse(localStorage.getItem('av_session')||'null'); }catch(e){return null;} }
+function saveSession(s){ localStorage.setItem('av_session', JSON.stringify(s)); }
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+function showError(id, msg){
+  const el = document.getElementById(id);
+  el.textContent = msg; el.style.display = 'block';
+  setTimeout(()=>{ el.style.display='none'; }, 4000);
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.auth-tab').forEach((t,i)=>{
+    t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='signup'&&i===1));
+  });
+  document.getElementById('form-login').classList.toggle('active', tab==='login');
+  document.getElementById('form-signup').classList.toggle('active', tab==='signup');
+}
+
+function doSignup(){
+  const first = document.getElementById('signup-first').value.trim();
+  const last  = document.getElementById('signup-last').value.trim();
+  const email = document.getElementById('signup-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('signup-pass').value;
+  const pass2 = document.getElementById('signup-pass2').value;
+
+  if(!first||!last) return showError('signup-error','Please enter your full name.');
+  if(!email||!email.includes('@')) return showError('signup-error','Enter a valid email address.');
+  if(pass.length < 6) return showError('signup-error','Password must be at least 6 characters.');
+  if(pass !== pass2) return showError('signup-error','Passwords do not match.');
+
+  const users = getUsers();
+  if(users[email]) return showError('signup-error','An account with this email already exists.');
+
+  users[email] = { first, last, email, pass };
+  saveUsers(users);
+
+  const s = document.getElementById('signup-success');
+  s.textContent = '✓ Account created! Signing you in…';
+  s.style.display = 'block';
+
+  setTimeout(()=>{
+    loginUser({ first, last, email });
+  }, 1200);
+}
+
+function doLogin(){
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('login-pass').value;
+
+  if(!email) return showError('login-error','Please enter your email.');
+  if(!pass)  return showError('login-error','Please enter your password.');
+
+  const users = getUsers();
+  if(!users[email]) return showError('login-error','No account found with that email.');
+  if(users[email].pass !== pass) return showError('login-error','Incorrect password. Try again.');
+
+  loginUser(users[email]);
+}
+
+function loginUser(user){
+  saveSession(user);
+  document.getElementById('auth-overlay').style.display = 'none';
+  const initials = (user.first[0]+(user.last[0]||'')).toUpperCase();
+  document.getElementById('nav-avatar').textContent = initials;
+  document.getElementById('nav-username').textContent = user.first;
+  showToast('👋 Welcome back, ' + user.first + '!');
+}
+
+function doLogout(){
+  localStorage.removeItem('av_session');
+  document.getElementById('auth-overlay').style.display = 'flex';
+  document.getElementById('login-email').value = '';
+  document.getElementById('login-pass').value = '';
+  showToast('You have been signed out.');
+}
+
+// Check if already logged in on page load
+(function(){
+  const session = getSession();
+  if(session && session.email){
+    loginUser(session);
+  }
+})();
+</script>
+</body>
+</html>
