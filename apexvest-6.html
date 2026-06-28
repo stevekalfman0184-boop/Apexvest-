@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apexvest — Grow Your Wealth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0F1923;--surface:#FFFFFF;--border:#E4EAF0;--muted:#7B8FA6;--text:#0F1923;
+  --gold:#B8873A;--gold-lt:#D4A85A;--gold-bg:#FBF5EA;
+  --teal:#0B7285;--teal-lt:#0E9DB3;--teal-bg:#EAF6F8;
+  --green:#1A7F4E;--green-lt:#22A868;--green-bg:#E8F7F0;
+  --red:#C0392B;--red-bg:#FDECEA;--bg:#F4F7FA;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;}
+
+/* NAV */
+nav{background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;position:sticky;top:0;z-index:200;}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px;}
+.logo em{color:var(--gold-lt);font-style:normal}
+nav ul{display:flex;gap:4px;list-style:none}
+nav ul a{display:block;padding:7px 14px;border-radius:6px;color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500;transition:all .15s;cursor:pointer;}
+nav ul a:hover,nav ul a.active{background:rgba(255,255,255,.1);color:#fff}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.15)}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:var(--gold-lt)}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;cursor:pointer;}
+
+/* HERO */
+.hero{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.18) 0%,transparent 65%);padding:48px 40px 52px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:10px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:14px;}
+.hero-title span{color:var(--gold-lt)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:480px;line-height:1.6}
+.hero-ctas{display:flex;gap:12px;margin-top:24px}
+.btn-lg{padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.btn-lg-gold{background:var(--gold);color:#fff}.btn-lg-gold:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.btn-lg-outline{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:#fff}.btn-lg-outline:hover{border-color:rgba(255,255,255,.5)}
+.hero-cards{display:flex;flex-direction:column;gap:12px;min-width:260px}
+.mini-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 18px;}
+.mini-card-label{font-size:11px;color:rgba(255,255,255,.45);font-weight:500;margin-bottom:4px}
+.mini-card-value{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:#fff}
+.mini-card-delta{font-size:11px;font-weight:600;margin-top:3px}
+.up{color:#4ADE80}.dn{color:#F87171}
+
+/* SHELL */
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 60px - 172px)}
+aside{background:var(--surface);border-right:1px solid var(--border);padding:24px 14px;}
+.aside-sect{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 8px;margin:20px 0 6px;}
+.aside-sect:first-child{margin-top:0}
+.slink{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;cursor:pointer;margin-bottom:2px;transition:all .15s;}
+.slink:hover,.slink.active{background:var(--gold-bg);color:var(--gold)}
+.sbadge{margin-left:auto;background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;}
+main{padding:32px 32px 48px}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* GRID */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.card-title{font-size:14px;font-weight:700;color:var(--text)}
+.card-link{font-size:12px;color:var(--teal);text-decoration:none;font-weight:600}.card-link:hover{color:var(--teal-lt)}
+
+/* STAT CARDS */
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.stat-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(184,135,58,.1)}
+.stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.stat-val{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;letter-spacing:-1px;color:var(--text);margin-bottom:6px}
+.stat-note{font-size:12px;font-weight:600;display:flex;align-items:center;gap:4px}
+
+/* GOAL */
+.goal-item{padding:14px 0;border-bottom:1px solid var(--border)}.goal-item:last-child{border-bottom:none}
+.goal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.goal-name{font-size:13px;font-weight:600}.goal-pct{font-size:12px;font-weight:700;color:var(--gold)}
+.goal-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.goal-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
+.goal-meta{font-size:11px;color:var(--muted)}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.plan-card{border:1.5px solid var(--border);border-radius:14px;padding:20px;background:var(--surface);transition:all .2s;cursor:pointer;position:relative;overflow:hidden;}
+.plan-card:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(184,135,58,.12);transform:translateY(-2px)}
+.plan-card.featured{border-color:var(--gold);background:linear-gradient(135deg,#FBF5EA 0%,#fff 100%)}
+.plan-ribbon{position:absolute;top:12px;right:-22px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:3px 28px;transform:rotate(35deg);letter-spacing:.06em;}
+.plan-icon{font-size:28px;margin-bottom:12px}.plan-name{font-size:15px;font-weight:700;margin-bottom:4px}
+.plan-rate{font-family:'DM Mono',monospace;font-size:28px;font-weight:500;color:var(--gold);margin:8px 0}
+.plan-rate span{font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:500}
+.plan-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:16px}
+.plan-features{list-style:none}.plan-features li{font-size:12px;color:var(--muted);padding:3px 0;display:flex;gap:6px;align-items:center}
+.plan-features li::before{content:"✓";color:var(--green);font-weight:700}
+.plan-btn{width:100%;margin-top:16px;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s;}
+.plan-btn-gold{background:var(--gold);color:#fff}.plan-btn-gold:hover{background:var(--gold-lt)}
+.plan-btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}.plan-btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CALCULATOR */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border .15s;}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.calc-result{background:var(--ink);border-radius:12px;padding:22px;display:flex;flex-direction:column;justify-content:center;}
+.calc-result-lbl{font-size:11px;color:rgba(255,255,255,.45);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.calc-result-val{font-family:'DM Mono',monospace;font-size:34px;font-weight:500;color:#fff;margin-bottom:8px}
+.calc-result-break{display:flex;flex-direction:column;gap:6px;margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
+.calc-row{display:flex;justify-content:space-between;font-size:12px}
+.calc-row-lbl{color:rgba(255,255,255,.45)}.calc-row-val{color:#fff;font-family:'DM Mono',monospace;font-weight:500}
+.calc-btn{width:100%;padding:11px;border-radius:8px;background:var(--gold);color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:background .15s;margin-top:4px;}
+.calc-btn:hover{background:var(--gold-lt)}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+thead th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;}
+tbody tr{transition:background .1s}tbody tr:hover{background:#FAFBFC}
+tbody td{padding:13px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:none}
+.mono{font-family:'DM Mono',monospace}
+.chip{display:inline-block;padding:3px 9px;border-radius:5px;font-size:11px;font-weight:700}
+.chip-green{background:var(--green-bg);color:var(--green)}.chip-gold{background:var(--gold-bg);color:var(--gold)}
+.chip-teal{background:var(--teal-bg);color:var(--teal)}.chip-red{background:var(--red-bg);color:var(--red)}
+.chip-blue{background:#EFF6FF;color:#1D4ED8}
+.tx-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+
+/* BAR CHART */
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:8px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.bar{width:100%;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--gold-lt),var(--gold));transition:opacity .2s;cursor:pointer;}
+.bar:hover{opacity:.8}.bar-lbl{font-size:10px;color:var(--muted);font-weight:500}
+
+/* PROFILE PAGE */
+.profile-header{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.18) 0%,transparent 65%);border-radius:14px;padding:32px;display:flex;align-items:center;gap:24px;margin-bottom:24px;}
+.profile-avatar-lg{width:72px;height:72px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;flex-shrink:0;}
+.profile-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:#fff}
+.profile-email{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.profile-badge{display:inline-block;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:8px}
+.pfield{margin-bottom:18px}
+.pfield label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.07em}
+.pfield input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border .15s;}
+.pfield input:focus{border-color:var(--gold)}
+.pfield input:disabled{background:#f8f9fa;color:var(--muted)}
+.save-btn{padding:12px 32px;border-radius:10px;background:var(--gold);color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:background .15s;}
+.save-btn:hover{background:var(--gold-lt)}
+.danger-btn{padding:12px 32px;border-radius:10px;background:var(--red-bg);color:var(--red);font-size:14px;font-weight:700;border:1.5px solid var(--red);cursor:pointer;transition:all .15s;}
+.danger-btn:hover{background:var(--red);color:#fff}
+
+/* ADMIN PAGE */
+.admin-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.admin-stat-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+.admin-stat-val{font-family:'DM Mono',monospace;font-size:28px;font-weight:500}
+.admin-badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:var(--red-bg);color:var(--red)}
+.admin-action-btn{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .15s;}
+.admin-del{background:var(--red-bg);color:var(--red)}.admin-del:hover{background:var(--red);color:#fff}
+.admin-promote{background:var(--gold-bg);color:var(--gold)}.admin-promote:hover{background:var(--gold);color:#fff}
+
+/* AUTH OVERLAY */
+#auth-overlay{position:fixed;inset:0;z-index:9999;background:rgba(15,25,35,.85);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;}
+.auth-box{background:#fff;border-radius:20px;width:100%;max-width:440px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25);}
+.auth-header{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.25) 0%,transparent 70%);padding:32px 36px 28px;text-align:center;}
+.auth-logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:#fff}
+.auth-logo em{color:var(--gold-lt);font-style:normal}
+.auth-tagline{font-size:13px;color:rgba(255,255,255,.45);margin-top:6px}
+.auth-body{padding:28px 32px}
+.auth-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-bottom:22px}
+.auth-tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;border:none;background:none;color:var(--muted);border-bottom:2.5px solid transparent;margin-bottom:-1.5px;transition:all .15s;}
+.auth-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.auth-form{display:none}.auth-form.active{display:block}
+.auth-field{margin-bottom:14px}
+.auth-field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em}
+.auth-field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border .15s;background:var(--bg);}
+.auth-field input:focus{border-color:var(--gold)}
+.auth-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.auth-btn{width:100%;padding:13px;border-radius:10px;border:none;background:var(--gold);color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:4px;}
+.auth-btn:hover{background:var(--gold-lt)}
+.auth-error{background:var(--red-bg);color:var(--red);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:500;margin-bottom:12px;display:none;}
+.auth-success{background:var(--green-bg);color:var(--green);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:500;margin-bottom:12px;display:none;}
+.auth-footer-note{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+.auth-footer-note a{color:var(--gold);text-decoration:none;font-weight:600}
+.forgot-link{display:block;text-align:right;font-size:12px;color:var(--gold);font-weight:600;text-decoration:none;margin-top:-8px;margin-bottom:14px;cursor:pointer;}
+
+/* TOAST */
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:30px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,25,35,.6);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:16px;padding:28px;max-width:400px;width:100%;box-shadow:0 16px 48px rgba(0,0,0,.2);}
+.modal-title{font-size:17px;font-weight:700;margin-bottom:8px}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end}
+.modal-cancel{padding:10px 20px;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-size:13px;font-weight:600;cursor:pointer;}
+.modal-confirm{padding:10px 20px;border-radius:8px;border:none;background:var(--red);color:#fff;font-size:13px;font-weight:600;cursor:pointer;}
+
+footer{background:var(--ink);color:rgba(255,255,255,.4);text-align:center;padding:20px;font-size:12px;}
+footer strong{color:var(--gold-lt)}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}aside{display:none}
+  .g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}.hero-cards{display:none}nav ul{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH OVERLAY -->
+<div id="auth-overlay">
+  <div class="auth-box">
+    <div class="auth-header">
+      <div class="auth-logo">Apex<em>vest</em></div>
+      <div class="auth-tagline">Your money, working harder for you.</div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
+        <button class="auth-tab" onclick="switchTab('signup')">Create Account</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="auth-form active" id="form-login">
+        <div id="login-error" class="auth-error"></div>
+        <div class="auth-field"><label>Email Address</label><input type="email" id="login-email" placeholder="you@example.com"/></div>
+        <div class="auth-field"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••"/></div>
+        <a class="forgot-link" onclick="switchTab('forgot')">Forgot password?</a>
+        <button class="auth-btn" onclick="doLogin()">Sign In to Apexvest</button>
+        <div class="auth-footer-note">No account? <a onclick="switchTab('signup')">Create one free</a></div>
+      </div>
+
+      <!-- SIGN UP -->
+      <div class="auth-form" id="form-signup">
+        <div id="signup-error" class="auth-error"></div>
+        <div id="signup-success" class="auth-success"></div>
+        <div class="auth-row">
+          <div class="auth-field"><label>First Name</label><input type="text" id="signup-first" placeholder="Alex"/></div>
+          <div class="auth-field"><label>Last Name</label><input type="text" id="signup-last" placeholder="Smith"/></div>
+        </div>
+        <div class="auth-field"><label>Email Address</label><input type="email" id="signup-email" placeholder="you@example.com"/></div>
+        <div class="auth-field"><label>Password</label><input type="password" id="signup-pass" placeholder="Min. 6 characters"/></div>
+        <div class="auth-field"><label>Confirm Password</label><input type="password" id="signup-pass2" placeholder="Repeat password"/></div>
+        <button class="auth-btn" onclick="doSignup()">Create My Account</button>
+        <div class="auth-footer-note">Already have an account? <a onclick="switchTab('login')">Sign in</a></div>
+      </div>
+
+      <!-- FORGOT PASSWORD -->
+      <div class="auth-form" id="form-forgot">
+        <div id="forgot-error" class="auth-error"></div>
+        <div id="forgot-success" class="auth-success"></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Enter your registered email and choose a new password.</p>
+        <div class="auth-field"><label>Email Address</label><input type="email" id="forgot-email" placeholder="you@example.com"/></div>
+        <div class="auth-field"><label>New Password</label><input type="password" id="forgot-newpass" placeholder="Min. 6 characters"/></div>
+        <div class="auth-field"><label>Confirm New Password</label><input type="password" id="forgot-confirm" placeholder="Repeat new password"/></div>
+        <button class="auth-btn" onclick="doForgot()">Reset Password</button>
+        <div class="auth-footer-note"><a onclick="switchTab('login')">← Back to Sign In</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- DELETE ACCOUNT MODAL -->
+<div class="modal-bg" id="delete-modal">
+  <div class="modal">
+    <div class="modal-title">Delete Account?</div>
+    <div class="modal-sub">This will permanently remove your account and all your data. This action cannot be undone.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeDeleteModal()">Cancel</button>
+      <button class="modal-confirm" onclick="confirmDeleteAccount()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Apex<em>vest</em></div>
+  <ul>
+    <li><a onclick="showPage('dashboard')" class="active" id="nav-dashboard">Overview</a></li>
+    <li><a onclick="showPage('dashboard')">Invest</a></li>
+    <li><a onclick="showPage('dashboard')">My Plans</a></li>
+    <li><a onclick="showPage('dashboard')">Goals</a></li>
+    <li><a onclick="showPage('profile')" id="nav-profile">Profile</a></li>
+    <li><a onclick="showPage('admin')" id="nav-admin" style="display:none">⚙ Admin</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn btn-ghost">Support</button>
+    <button class="btn btn-gold">+ Add Money</button>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="avatar" id="nav-avatar" onclick="showPage('profile')">AV</div>
+      <span id="nav-username" style="color:rgba(255,255,255,.7);font-size:13px;font-weight:500"></span>
+    </div>
+    <button class="btn btn-ghost" onclick="doLogout()" style="font-size:12px">Sign Out</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Apexvest Wealth Platform</div>
+    <div class="hero-title">Your money,<br>working <span>harder</span> for you.</div>
+    <div class="hero-sub">Put your money to work with high-yield savings plans, fixed deposits, and managed funds — all in one place.</div>
+    <div class="hero-ctas">
+      <button class="btn-lg btn-lg-gold">Start Investing</button>
+      <button class="btn-lg btn-lg-outline">View Plans</button>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="mini-card"><div class="mini-card-label">Total Invested</div><div class="mini-card-value">$148,200</div><div class="mini-card-delta up">▲ +8.4% this year</div></div>
+    <div class="mini-card"><div class="mini-card-label">Interest Earned</div><div class="mini-card-value">$12,438</div><div class="mini-card-delta up">▲ +$843 this month</div></div>
+    <div class="mini-card"><div class="mini-card-label">Next Payout</div><div class="mini-card-value">Jul 1, 2026</div><div class="mini-card-delta" style="color:rgba(255,255,255,.4)">3 days away · $1,240</div></div>
+  </div>
+</div>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<aside>
+  <div class="aside-sect">Overview</div>
+  <a class="slink active" onclick="showPage('dashboard')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Dashboard
+  </a>
+  <a class="slink" onclick="showPage('dashboard')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    My Investments
+  </a>
+  <a class="slink" onclick="showPage('dashboard')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Fixed Deposits <span class="sbadge">3</span>
+  </a>
+  <div class="aside-sect">Goals</div>
+  <a class="slink" onclick="showPage('dashboard')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    House Fund
+  </a>
+  <a class="slink" onclick="showPage('dashboard')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+    Retirement
+  </a>
+  <div class="aside-sect">Account</div>
+  <a class="slink" onclick="showPage('profile')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profile Settings
+  </a>
+  <a class="slink" id="sidebar-admin" style="display:none" onclick="showPage('admin')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Admin Panel <span class="sbadge">!</span>
+  </a>
+  <a class="slink" onclick="doLogout()">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign Out
+  </a>
+</aside>
+
+<main>
+
+<!-- ══ DASHBOARD PAGE ══ -->
+<div class="page active" id="page-dashboard">
+  <div class="g4">
+    <div class="stat-card"><div class="stat-icon" style="background:var(--gold-bg)">💰</div><div class="stat-lbl">Total Balance</div><div class="stat-val">$148,200</div><div class="stat-note up">▲ +$843 this month</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--green-bg)">📈</div><div class="stat-lbl">Returns Earned</div><div class="stat-val" style="color:var(--green)">$12,438</div><div class="stat-note up">▲ 8.4% annualized</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--teal-bg)">🏦</div><div class="stat-lbl">Active Plans</div><div class="stat-val">5</div><div class="stat-note" style="color:var(--muted)">3 fixed · 2 flexible</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:#FEF3C7">⏳</div><div class="stat-lbl">Next Payout</div><div class="stat-val">$1,240</div><div class="stat-note" style="color:var(--muted)">Due July 1, 2026</div></div>
+  </div>
+  <div class="g3">
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Monthly Returns</div><span style="font-size:12px;color:var(--muted)">Jan – Jun 2026</span></div>
+      <div class="bar-chart">
+        <div class="bar-col"><div class="bar" style="height:52%"></div><div class="bar-lbl">Jan</div></div>
+        <div class="bar-col"><div class="bar" style="height:61%"></div><div class="bar-lbl">Feb</div></div>
+        <div class="bar-col"><div class="bar" style="height:58%"></div><div class="bar-lbl">Mar</div></div>
+        <div class="bar-col"><div class="bar" style="height:74%"></div><div class="bar-lbl">Apr</div></div>
+        <div class="bar-col"><div class="bar" style="height:80%"></div><div class="bar-lbl">May</div></div>
+        <div class="bar-col"><div class="bar" style="height:100%"></div><div class="bar-lbl">Jun</div></div>
+      </div>
+      <div style="display:flex;gap:24px;margin-top:20px;padding-top:14px;border-top:1px solid var(--border)">
+        <div><div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">Best Month</div><div class="mono" style="font-size:15px;font-weight:500;color:var(--green)">+$2,184</div></div>
+        <div><div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">Avg Monthly</div><div class="mono" style="font-size:15px;font-weight:500">+$1,074</div></div>
+        <div><div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">YTD Returns</div><div class="mono" style="font-size:15px;font-weight:500;color:var(--gold)">+$6,444</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Savings Goals</div><a href="#" class="card-link">+ New Goal</a></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">🏠 Dream Home</div><div class="goal-pct">73%</div></div><div class="goal-bar"><div class="goal-fill" style="width:73%"></div></div><div class="goal-meta">$36,500 of $50,000 · Dec 2026</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">🎓 Education</div><div class="goal-pct">45%</div></div><div class="goal-bar"><div class="goal-fill" style="width:45%"></div></div><div class="goal-meta">$9,000 of $20,000 · Sep 2027</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">✈️ Vacation Fund</div><div class="goal-pct">91%</div></div><div class="goal-bar"><div class="goal-fill" style="width:91%"></div></div><div class="goal-meta">$4,550 of $5,000 · Aug 2026</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">🛡️ Emergency Fund</div><div class="goal-pct">60%</div></div><div class="goal-bar"><div class="goal-fill" style="width:60%"></div></div><div class="goal-meta">$18,000 of $30,000 · Jan 2027</div></div>
+    </div>
+  </div>
+  <div style="margin-bottom:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div><div style="font-size:18px;font-weight:700">Investment Plans</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Choose a plan that matches your goal.</div></div>
+    </div>
+    <div class="plans">
+      <div class="plan-card"><div class="plan-icon">💵</div><div class="plan-name">Flex Saver</div><div class="plan-rate">6.5% <span>p.a.</span></div><div class="plan-desc">Withdraw anytime without penalty. Perfect for short-term goals.</div><ul class="plan-features"><li>No lock-in period</li><li>Minimum $100</li><li>Monthly payouts</li><li>Instant withdrawals</li></ul><button class="plan-btn plan-btn-outline">Open Account</button></div>
+      <div class="plan-card featured"><div class="plan-ribbon">POPULAR</div><div class="plan-icon">🏆</div><div class="plan-name">Fixed Growth</div><div class="plan-rate">11.2% <span>p.a.</span></div><div class="plan-desc">Lock in a higher rate for 12 months and watch your money compound.</div><ul class="plan-features"><li>12-month fixed term</li><li>Minimum $1,000</li><li>Quarterly compounding</li><li>Capital guaranteed</li></ul><button class="plan-btn plan-btn-gold">Start Earning</button></div>
+      <div class="plan-card"><div class="plan-icon">🚀</div><div class="plan-name">Apex Growth Fund</div><div class="plan-rate">15–22% <span>target</span></div><div class="plan-desc">Managed diversified fund investing in high-yield assets.</div><ul class="plan-features"><li>24-month horizon</li><li>Minimum $5,000</li><li>Professionally managed</li><li>Annual dividend option</li></ul><button class="plan-btn plan-btn-outline">Learn More</button></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Returns Calculator</div></div>
+      <div class="calc-grid">
+        <div>
+          <div class="field"><label>Amount to Invest</label><input type="number" id="principal" value="10000" min="100"/></div>
+          <div class="field"><label>Plan</label><select id="rate"><option value="6.5">Flex Saver — 6.5% p.a.</option><option value="11.2" selected>Fixed Growth — 11.2% p.a.</option><option value="18">Apex Fund — 18% p.a.</option></select></div>
+          <div class="field"><label>Duration (Months)</label><input type="number" id="months" value="12" min="1" max="60"/></div>
+          <button class="calc-btn" onclick="calculate()">Calculate Returns</button>
+        </div>
+        <div class="calc-result">
+          <div class="calc-result-lbl">Projected Value</div>
+          <div class="calc-result-val" id="result-total">$11,120</div>
+          <div class="calc-result-break">
+            <div class="calc-row"><span class="calc-row-lbl">Principal</span><span class="calc-row-val" id="result-principal">$10,000</span></div>
+            <div class="calc-row"><span class="calc-row-lbl">Interest Earned</span><span class="calc-row-val" id="result-interest" style="color:#4ADE80">+$1,120</span></div>
+            <div class="calc-row"><span class="calc-row-lbl">Rate</span><span class="calc-row-val" id="result-rate">11.2% p.a.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Recent Transactions</div><a href="#" class="card-link">View all</a></div>
+      <table>
+        <thead><tr><th></th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><div class="tx-icon" style="background:var(--green-bg)">💸</div></td><td><div style="font-weight:600">Interest Payout</div><div style="font-size:11px;color:var(--muted)">Fixed Growth · Jun 1</div></td><td class="mono up">+$1,120</td><td><span class="chip chip-green">Received</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--gold-bg)">➕</div></td><td><div style="font-weight:600">Top-up</div><div style="font-size:11px;color:var(--muted)">Flex Saver · May 28</div></td><td class="mono">$5,000</td><td><span class="chip chip-gold">Invested</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--teal-bg)">🔁</div></td><td><div style="font-weight:600">Auto-reinvest</div><div style="font-size:11px;color:var(--muted)">Apex Fund · May 15</div></td><td class="mono">$843</td><td><span class="chip chip-teal">Reinvested</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--red-bg)">🏧</div></td><td><div style="font-weight:600">Withdrawal</div><div style="font-size:11px;color:var(--muted)">Flex Saver · Apr 30</div></td><td class="mono dn">-$2,000</td><td><span class="chip chip-red">Withdrawn</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROFILE PAGE ══ -->
+<div class="page" id="page-profile">
+  <div class="profile-header">
+    <div class="profile-avatar-lg" id="profile-avatar-lg">AV</div>
+    <div>
+      <div class="profile-name" id="profile-fullname">Alex Smith</div>
+      <div class="profile-email" id="profile-email-display">alex@example.com</div>
+      <div class="profile-badge" id="profile-role-badge">Member</div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Personal Information</div></div>
+      <div class="auth-error" id="profile-error"></div>
+      <div class="auth-success" id="profile-success"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="pfield"><label>First Name</label><input type="text" id="pf-first" placeholder="Alex"/></div>
+        <div class="pfield"><label>Last Name</label><input type="text" id="pf-last" placeholder="Smith"/></div>
+      </div>
+      <div class="pfield"><label>Email Address</label><input type="email" id="pf-email" disabled/></div>
+      <div class="pfield"><label>Phone Number</label><input type="tel" id="pf-phone" placeholder="+1 234 567 8900"/></div>
+      <div class="pfield"><label>Country</label><input type="text" id="pf-country" placeholder="United States"/></div>
+      <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="card-hd"><div class="card-title">Change Password</div></div>
+        <div class="auth-error" id="pwd-error"></div>
+        <div class="auth-success" id="pwd-success"></div>
+        <div class="pfield"><label>Current Password</label><input type="password" id="pwd-current" placeholder="••••••••"/></div>
+        <div class="pfield"><label>New Password</label><input type="password" id="pwd-new" placeholder="Min. 6 characters"/></div>
+        <div class="pfield"><label>Confirm New Password</label><input type="password" id="pwd-confirm" placeholder="Repeat new password"/></div>
+        <button class="save-btn" onclick="changePassword()">Update Password</button>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-title" style="color:var(--red)">Danger Zone</div></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.5">Permanently delete your account and all associated data. This cannot be undone.</p>
+        <button class="danger-btn" onclick="openDeleteModal()">Delete My Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN PAGE ══ -->
+<div class="page" id="page-admin">
+  <div style="margin-bottom:24px">
+    <div style="font-size:22px;font-weight:800;letter-spacing:-.5px">Admin Panel</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:3px">Manage all registered users and platform activity.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px" id="admin-stats-grid">
+    <div class="admin-stat"><div class="admin-stat-lbl">Total Users</div><div class="admin-stat-val" id="admin-total-users">0</div></div>
+    <div class="admin-stat"><div class="admin-stat-lbl">Admins</div><div class="admin-stat-val" id="admin-total-admins">0</div></div>
+    <div class="admin-stat"><div class="admin-stat-lbl">New This Week</div><div class="admin-stat-val">—</div></div>
+    <div class="admin-stat"><div class="admin-stat-lbl">Platform Status</div><div class="admin-stat-val" style="color:var(--green);font-size:18px">● Live</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-title">Registered Users</div><button class="btn" style="background:var(--gold-bg);color:var(--gold);font-size:12px;padding:6px 14px" onclick="renderAdminTable()">↻ Refresh</button></div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Actions</th></tr></thead>
+        <tbody id="admin-users-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<footer>
+  <strong>Apexvest</strong> &nbsp;·&nbsp; Investments are subject to risk. Past returns do not guarantee future performance. &nbsp;·&nbsp; © 2026 Apexvest Financial Ltd.
+</footer>
+
+<script>
+/* ── UTILS ── */
+function fmt(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function showMsg(id,msg,type){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';if(type==='error')el.className='auth-error';else el.className='auth-success';setTimeout(()=>{el.style.display='none';},4000);}
+
+/* ── STORAGE ── */
+function getUsers(){try{return JSON.parse(localStorage.getItem('av_users')||'{}');}catch(e){return{};}}
+function saveUsers(u){localStorage.setItem('av_users',JSON.stringify(u));}
+function getSession(){try{return JSON.parse(localStorage.getItem('av_session')||'null');}catch(e){return null;}}
+function saveSession(s){localStorage.setItem('av_session',JSON.stringify(s));}
+
+/* ── AUTH TABS ── */
+function switchTab(tab){
+  ['login','signup','forgot'].forEach(t=>{
+    document.getElementById('form-'+t).classList.toggle('active',t===tab);
+  });
+  document.querySelectorAll('.auth-tab').forEach((el,i)=>{
+    el.classList.toggle('active',(tab==='login'&&i===0)||(tab==='signup'&&i===1));
+  });
+}
+
+/* ── SIGN UP ── */
+function doSignup(){
+  const first=document.getElementById('signup-first').value.trim();
+  const last=document.getElementById('signup-last').value.trim();
+  const email=document.getElementById('signup-email').value.trim().toLowerCase();
+  const pass=document.getElementById('signup-pass').value;
+  const pass2=document.getElementById('signup-pass2').value;
+  if(!first||!last){showMsg('signup-error','Please enter your full name.','error');return;}
+  if(!email||!email.includes('@')){showMsg('signup-error','Enter a valid email.','error');return;}
+  if(pass.length<6){showMsg('signup-error','Password must be at least 6 characters.','error');return;}
+  if(pass!==pass2){showMsg('signup-error','Passwords do not match.','error');return;}
+  const users=getUsers();
+  if(users[email]){showMsg('signup-error','An account with this email already exists.','error');return;}
+  const isFirstUser=Object.keys(users).length===0;
+  users[email]={first,last,email,pass,phone:'',country:'',role:isFirstUser?'admin':'member',joined:new Date().toLocaleDateString()};
+  saveUsers(users);
+  showMsg('signup-success','✓ Account created! Signing you in…','success');
+  setTimeout(()=>loginUser(users[email]),1200);
+}
+
+/* ── LOGIN ── */
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim().toLowerCase();
+  const pass=document.getElementById('login-pass').value;
+  if(!email){showMsg('login-error','Please enter your email.','error');return;}
+  if(!pass){showMsg('login-error','Please enter your password.','error');return;}
+  const users=getUsers();
+  if(!users[email]){showMsg('login-error','No account found with that email.','error');return;}
+  if(users[email].pass!==pass){showMsg('login-error','Incorrect password. Try again.','error');return;}
+  loginUser(users[email]);
+}
+
+/* ── FORGOT PASSWORD ── */
+function doForgot(){
+  const email=document.getElementById('forgot-email').value.trim().toLowerCase();
+  const np=document.getElementById('forgot-newpass').value;
+  const np2=document.getElementById('forgot-confirm').value;
+  const users=getUsers();
+  if(!email||!users[email]){showMsg('forgot-error','No account found with that email.','error');return;}
+  if(np.length<6){showMsg('forgot-error','New password must be at least 6 characters.','error');return;}
+  if(np!==np2){showMsg('forgot-error','Passwords do not match.','error');return;}
+  users[email].pass=np;
+  saveUsers(users);
+  showMsg('forgot-success','✓ Password reset! You can now sign in.','success');
+  setTimeout(()=>switchTab('login'),2000);
+}
+
+/* ── LOGIN USER ── */
+function loginUser(user){
+  saveSession(user);
+  document.getElementById('auth-overlay').style.display='none';
+  const initials=(user.first[0]+(user.last[0]||'')).toUpperCase();
+  document.getElementById('nav-avatar').textContent=initials;
+  document.getElementById('nav-username').textContent=user.first;
+  // show admin links if admin
+  const isAdmin=user.role==='admin';
+  document.getElementById('nav-admin').style.display=isAdmin?'block':'none';
+  document.getElementById('sidebar-admin').style.display=isAdmin?'flex':'none';
+  showToast('👋 Welcome back, '+user.first+'!');
+  loadProfilePage(user);
+}
+
+/* ── LOGOUT ── */
+function doLogout(){
+  localStorage.removeItem('av_session');
+  document.getElementById('auth-overlay').style.display='flex';
+  document.getElementById('login-email').value='';
+  document.getElementById('login-pass').value='';
+  showToast('You have been signed out.');
+}
+
+/* ── PAGE NAVIGATION ── */
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.slink').forEach(s=>s.classList.remove('active'));
+  if(name==='admin') renderAdminTable();
+  if(name==='profile'){const s=getSession();if(s)loadProfilePage(s);}
+}
+
+/* ── PROFILE ── */
+function loadProfilePage(user){
+  const initials=(user.first[0]+(user.last[0]||'')).toUpperCase();
+  document.getElementById('profile-avatar-lg').textContent=initials;
+  document.getElementById('profile-fullname').textContent=user.first+' '+user.last;
+  document.getElementById('profile-email-display').textContent=user.email;
+  document.getElementById('profile-role-badge').textContent=user.role==='admin'?'⚙ Administrator':'Member';
+  document.getElementById('profile-role-badge').style.background=user.role==='admin'?'var(--red)':'var(--gold)';
+  document.getElementById('pf-first').value=user.first||'';
+  document.getElementById('pf-last').value=user.last||'';
+  document.getElementById('pf-email').value=user.email||'';
+  document.getElementById('pf-phone').value=user.phone||'';
+  document.getElementById('pf-country').value=user.country||'';
+}
+
+function saveProfile(){
+  const session=getSession();if(!session)return;
+  const users=getUsers();
+  const first=document.getElementById('pf-first').value.trim();
+  const last=document.getElementById('pf-last').value.trim();
+  if(!first||!last){showMsg('profile-error','Name cannot be empty.','error');return;}
+  users[session.email].first=first;
+  users[session.email].last=last;
+  users[session.email].phone=document.getElementById('pf-phone').value.trim();
+  users[session.email].country=document.getElementById('pf-country').value.trim();
+  saveUsers(users);
+  saveSession(users[session.email]);
+  const initials=(first[0]+(last[0]||'')).toUpperCase();
+  document.getElementById('nav-avatar').textContent=initials;
+  document.getElementById('nav-username').textContent=first;
+  document.getElementById('profile-fullname').textContent=first+' '+last;
+  document.getElementById('profile-avatar-lg').textContent=initials;
+  showMsg('profile-success','✓ Profile updated successfully!','success');
+}
+
+function changePassword(){
+  const session=getSession();if(!session)return;
+  const users=getUsers();
+  const cur=document.getElementById('pwd-current').value;
+  const np=document.getElementById('pwd-new').value;
+  const np2=document.getElementById('pwd-confirm').value;
+  if(users[session.email].pass!==cur){showMsg('pwd-error','Current password is incorrect.','error');return;}
+  if(np.length<6){showMsg('pwd-error','New password must be at least 6 characters.','error');return;}
+  if(np!==np2){showMsg('pwd-error','New passwords do not match.','error');return;}
+  users[session.email].pass=np;
+  saveUsers(users);
+  document.getElementById('pwd-current').value='';
+  document.getElementById('pwd-new').value='';
+  document.getElementById('pwd-confirm').value='';
+  showMsg('pwd-success','✓ Password changed successfully!','success');
+}
+
+function openDeleteModal(){document.getElementById('delete-modal').classList.add('open');}
+function closeDeleteModal(){document.getElementById('delete-modal').classList.remove('open');}
+function confirmDeleteAccount(){
+  const session=getSession();if(!session)return;
+  const users=getUsers();
+  delete users[session.email];
+  saveUsers(users);
+  localStorage.removeItem('av_session');
+  closeDeleteModal();
+  showToast('Account deleted.');
+  setTimeout(()=>{document.getElementById('auth-overlay').style.display='flex';},800);
+}
+
+/* ── ADMIN ── */
+function renderAdminTable(){
+  const users=getUsers();
+  const keys=Object.keys(users);
+  document.getElementById('admin-total-users').textContent=keys.length;
+  document.getElementById('admin-total-admins').textContent=keys.filter(k=>users[k].role==='admin').length;
+  const tbody=document.getElementById('admin-users-tbody');
+  const session=getSession();
+  tbody.innerHTML=keys.length===0
+    ?'<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">No registered users yet.</td></tr>'
+    :keys.map((email,i)=>{
+      const u=users[email];
+      const isSelf=session&&session.email===email;
+      return `<tr>
+        <td style="color:var(--muted)">${i+1}</td>
+        <td><div style="font-weight:600">${u.first} ${u.last}</div><div style="font-size:11px;color:var(--muted)">${u.joined||'—'}</div></td>
+        <td class="mono" style="font-size:12px">${email}</td>
+        <td><span class="chip ${u.role==='admin'?'chip-red':'chip-teal'}">${u.role==='admin'?'Admin':'Member'}</span></td>
+        <td style="display:flex;gap:6px;align-items:center">
+          <button class="admin-action-btn admin-promote" onclick="toggleRole('${email}')">${u.role==='admin'?'Demote':'Make Admin'}</button>
+          ${!isSelf?`<button class="admin-action-btn admin-del" onclick="adminDelete('${email}')">Delete</button>`:'<span style="font-size:11px;color:var(--muted)">(you)</span>'}
+        </td>
+      </tr>`;
+    }).join('');
+}
+
+function toggleRole(email){
+  const users=getUsers();
+  users[email].role=users[email].role==='admin'?'member':'admin';
+  saveUsers(users);
+  renderAdminTable();
+  showToast('Role updated for '+users[email].first);
+}
+
+function adminDelete(email){
+  if(!confirm('Delete account for '+email+'?'))return;
+  const users=getUsers();
+  delete users[email];
+  saveUsers(users);
+  renderAdminTable();
+  showToast('User deleted.');
+}
+
+/* ── CALCULATOR ── */
+function calculate(){
+  const p=parseFloat(document.getElementById('principal').value)||0;
+  const r=parseFloat(document.getElementById('rate').value)/100;
+  const m=parseInt(document.getElementById('months').value)||12;
+  const n=4;const total=p*Math.pow(1+r/n,n*(m/12));const interest=total-p;
+  const rateText=document.getElementById('rate').options[document.getElementById('rate').selectedIndex].text.split('—')[1]?.trim()||'';
+  document.getElementById('result-total').textContent=fmt(total);
+  document.getElementById('result-principal').textContent=fmt(p);
+  document.getElementById('result-interest').textContent='+'+fmt(interest);
+  document.getElementById('result-rate').textContent=rateText;
+}
+['principal','rate','months'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){el.addEventListener('input',calculate);el.addEventListener('change',calculate);}
+});
+
+/* ── INIT ── */
+(function(){
+  const session=getSession();
+  if(session&&session.email)loginUser(session);
+})();
+</script>
+</body>
+</html>
