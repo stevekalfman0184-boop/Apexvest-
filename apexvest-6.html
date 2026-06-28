@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Apexvest — Grow Your Wealth. Invest in high-yield savings plans, fixed deposits, and managed funds. Start growing your money today with safe, reliable investment options."/>
+<meta name="keywords" content="investment platform, savings, wealth management, fixed deposits, high-yield savings, financial growth"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Apexvest Financial Ltd"/>
+<meta property="og:title" content="Apexvest — Grow Your Wealth"/>
+<meta property="og:description" content="Invest in high-yield savings plans, fixed deposits, and managed funds. Your money, working harder for you."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://apexvest.onrender.com"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Apexvest — Grow Your Wealth"/>
+<meta name="twitter:description" content="Invest with Apexvest and grow your wealth safely and reliably."/>
+<link rel="canonical" href="https://apexvest.onrender.com"/>
 <title>Apexvest — Grow Your Wealth</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -30,7 +42,7 @@ nav ul a:hover,nav ul a.active{background:rgba(255,255,255,.1);color:#fff}
 .avatar{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;cursor:pointer;}
 
 /* HERO */
-.hero{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.18) 0%,transparent 65%);padding:48px 40px 52px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;}
+.hero{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.18) 0%,transparent 65%);padding:48px 40px 52px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;min-height:420px}
 .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:10px;}
 .hero-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:14px;}
 .hero-title span{color:var(--gold-lt)}
@@ -137,7 +149,7 @@ tbody tr:last-child td{border-bottom:none}
 .bar:hover{opacity:.8}.bar-lbl{font-size:10px;color:var(--muted);font-weight:500}
 
 /* PROFILE PAGE */
-.profile-header{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.18) 0%,transparent 65%);border-radius:14px;padding:32px;display:flex;align-items:center;gap:24px;margin-bottom:24px;}
+.profile-header{background:var(--ink);background-image:radial-gradient(ellipse at 80% 50%,rgba(184,135,58,.18) 0%,transparent 65%);border-radius:14px;padding:32px;display:flex;align-items:center;gap:24px;margin-bottom:24px}
 .profile-avatar-lg{width:72px;height:72px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;flex-shrink:0;}
 .profile-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:#fff}
 .profile-email{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
@@ -175,7 +187,7 @@ tbody tr:last-child td{border-bottom:none}
 .auth-form{display:none}.auth-form.active{display:block}
 .auth-field{margin-bottom:14px}
 .auth-field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em}
-.auth-field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border .15s;background:var(--bg);}
+.auth-field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border .15s;}
 .auth-field input:focus{border-color:var(--gold)}
 .auth-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .auth-btn{width:100%;padding:13px;border-radius:10px;border:none;background:var(--gold);color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:4px;}
@@ -187,7 +199,7 @@ tbody tr:last-child td{border-bottom:none}
 .forgot-link{display:block;text-align:right;font-size:12px;color:var(--gold);font-weight:600;text-decoration:none;margin-top:-8px;margin-bottom:14px;cursor:pointer;}
 
 /* TOAST */
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:30px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:30px;font-size:13px;font-weight:600;z-index:10000;opacity:0;transition:opacity .3s,transform .3s}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* MODAL */
@@ -316,7 +328,7 @@ footer strong{color:var(--gold-lt)}
   <div class="hero-cards">
     <div class="mini-card"><div class="mini-card-label">Total Invested</div><div class="mini-card-value">$148,200</div><div class="mini-card-delta up">▲ +8.4% this year</div></div>
     <div class="mini-card"><div class="mini-card-label">Interest Earned</div><div class="mini-card-value">$12,438</div><div class="mini-card-delta up">▲ +$843 this month</div></div>
-    <div class="mini-card"><div class="mini-card-label">Next Payout</div><div class="mini-card-value">Jul 1, 2026</div><div class="mini-card-delta" style="color:rgba(255,255,255,.4)">3 days away · $1,240</div></div>
+    <div class="mini-card"><div class="mini-card-label">Next Payout</div><div class="mini-card-value">Jul 1, 2026</div><div class="mini-card-delta" style="color:rgba(255,255,255,.4)">3 days away</div></div>
   </div>
 </div>
 
@@ -365,10 +377,10 @@ footer strong{color:var(--gold-lt)}
 <!-- ══ DASHBOARD PAGE ══ -->
 <div class="page active" id="page-dashboard">
   <div class="g4">
-    <div class="stat-card"><div class="stat-icon" style="background:var(--gold-bg)">💰</div><div class="stat-lbl">Total Balance</div><div class="stat-val">$148,200</div><div class="stat-note up">▲ +$843 this month</div></div>
-    <div class="stat-card"><div class="stat-icon" style="background:var(--green-bg)">📈</div><div class="stat-lbl">Returns Earned</div><div class="stat-val" style="color:var(--green)">$12,438</div><div class="stat-note up">▲ 8.4% annualized</div></div>
-    <div class="stat-card"><div class="stat-icon" style="background:var(--teal-bg)">🏦</div><div class="stat-lbl">Active Plans</div><div class="stat-val">5</div><div class="stat-note" style="color:var(--muted)">3 fixed · 2 flexible</div></div>
-    <div class="stat-card"><div class="stat-icon" style="background:#FEF3C7">⏳</div><div class="stat-lbl">Next Payout</div><div class="stat-val">$1,240</div><div class="stat-note" style="color:var(--muted)">Due July 1, 2026</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--gold-bg)">💰</div><div class="stat-lbl">Total Balance</div><div class="stat-val">$148,200</div><div class="stat-note up">▲ +8.4% YTD</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--green-bg)">📈</div><div class="stat-lbl">Returns Earned</div><div class="stat-val" style="color:var(--green)">$12,438</div><div class="stat-note up">▲ +18.2% vs last year</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:var(--teal-bg)">🏦</div><div class="stat-lbl">Active Plans</div><div class="stat-val">5</div><div class="stat-note">3 performing well</div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:#FEF3C7">⏳</div><div class="stat-lbl">Next Payout</div><div class="stat-val">$1,240</div><div class="stat-note" style="color:var(--muted)">Scheduled in 3 days</div></div>
   </div>
   <div class="g3">
     <div class="card">
@@ -389,10 +401,10 @@ footer strong{color:var(--gold-lt)}
     </div>
     <div class="card">
       <div class="card-hd"><div class="card-title">Savings Goals</div><a href="#" class="card-link">+ New Goal</a></div>
-      <div class="goal-item"><div class="goal-top"><div class="goal-name">🏠 Dream Home</div><div class="goal-pct">73%</div></div><div class="goal-bar"><div class="goal-fill" style="width:73%"></div></div><div class="goal-meta">$36,500 of $50,000 · Dec 2026</div></div>
-      <div class="goal-item"><div class="goal-top"><div class="goal-name">🎓 Education</div><div class="goal-pct">45%</div></div><div class="goal-bar"><div class="goal-fill" style="width:45%"></div></div><div class="goal-meta">$9,000 of $20,000 · Sep 2027</div></div>
-      <div class="goal-item"><div class="goal-top"><div class="goal-name">✈️ Vacation Fund</div><div class="goal-pct">91%</div></div><div class="goal-bar"><div class="goal-fill" style="width:91%"></div></div><div class="goal-meta">$4,550 of $5,000 · Aug 2026</div></div>
-      <div class="goal-item"><div class="goal-top"><div class="goal-name">🛡️ Emergency Fund</div><div class="goal-pct">60%</div></div><div class="goal-bar"><div class="goal-fill" style="width:60%"></div></div><div class="goal-meta">$18,000 of $30,000 · Jan 2027</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">🏠 Dream Home</div><div class="goal-pct">73%</div></div><div class="goal-bar"><div class="goal-fill" style="width:73%"></div></div><div class="goal-meta">$36,500 of $50,000</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">🎓 Education</div><div class="goal-pct">45%</div></div><div class="goal-bar"><div class="goal-fill" style="width:45%"></div></div><div class="goal-meta">$11,250 of $25,000</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">✈️ Vacation Fund</div><div class="goal-pct">91%</div></div><div class="goal-bar"><div class="goal-fill" style="width:91%"></div></div><div class="goal-meta">$9,100 of $10,000</div></div>
+      <div class="goal-item"><div class="goal-top"><div class="goal-name">🛡️ Emergency Fund</div><div class="goal-pct">60%</div></div><div class="goal-bar"><div class="goal-fill" style="width:60%"></div></div><div class="goal-meta">$18,000 of $30,000</div></div>
     </div>
   </div>
   <div style="margin-bottom:24px">
@@ -400,9 +412,9 @@ footer strong{color:var(--gold-lt)}
       <div><div style="font-size:18px;font-weight:700">Investment Plans</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Choose a plan that matches your goal.</div></div>
     </div>
     <div class="plans">
-      <div class="plan-card"><div class="plan-icon">💵</div><div class="plan-name">Flex Saver</div><div class="plan-rate">6.5% <span>p.a.</span></div><div class="plan-desc">Withdraw anytime without penalty. Perfect for short-term goals.</div><ul class="plan-features"><li>No lock-in period</li><li>Minimum $100</li><li>Monthly payouts</li><li>Instant withdrawals</li></ul><button class="plan-btn plan-btn-outline">Open Account</button></div>
-      <div class="plan-card featured"><div class="plan-ribbon">POPULAR</div><div class="plan-icon">🏆</div><div class="plan-name">Fixed Growth</div><div class="plan-rate">11.2% <span>p.a.</span></div><div class="plan-desc">Lock in a higher rate for 12 months and watch your money compound.</div><ul class="plan-features"><li>12-month fixed term</li><li>Minimum $1,000</li><li>Quarterly compounding</li><li>Capital guaranteed</li></ul><button class="plan-btn plan-btn-gold">Start Earning</button></div>
-      <div class="plan-card"><div class="plan-icon">🚀</div><div class="plan-name">Apex Growth Fund</div><div class="plan-rate">15–22% <span>target</span></div><div class="plan-desc">Managed diversified fund investing in high-yield assets.</div><ul class="plan-features"><li>24-month horizon</li><li>Minimum $5,000</li><li>Professionally managed</li><li>Annual dividend option</li></ul><button class="plan-btn plan-btn-outline">Learn More</button></div>
+      <div class="plan-card"><div class="plan-icon">💵</div><div class="plan-name">Flex Saver</div><div class="plan-rate">6.5% <span>p.a.</span></div><div class="plan-desc">Withdraw anytime without penalties. Perfect for building emergency funds.</div><ul class="plan-features"><li>Instant withdrawals</li><li>No lock-in period</li><li>Daily interest accrual</li></ul><button class="plan-btn plan-btn-outline">Select Plan</button></div>
+      <div class="plan-card featured"><div class="plan-ribbon">POPULAR</div><div class="plan-icon">🏆</div><div class="plan-name">Fixed Growth</div><div class="plan-rate">11.2% <span>p.a.</span></div><div class="plan-desc">Best for consistent growth. Recommended by 80% of our investors.</div><ul class="plan-features"><li>1-5 year terms</li><li>Guaranteed returns</li><li>Auto-reinvest option</li></ul><button class="plan-btn plan-btn-gold">Select Plan</button></div>
+      <div class="plan-card"><div class="plan-icon">🚀</div><div class="plan-name">Apex Growth Fund</div><div class="plan-rate">15–22% <span>target</span></div><div class="plan-desc">Managed portfolio for experienced investors seeking higher returns.</div><ul class="plan-features"><li>Professional management</li><li>Diversified assets</li><li>Quarterly reports</li></ul><button class="plan-btn plan-btn-outline">Select Plan</button></div>
     </div>
   </div>
   <div class="g2">
@@ -411,7 +423,7 @@ footer strong{color:var(--gold-lt)}
       <div class="calc-grid">
         <div>
           <div class="field"><label>Amount to Invest</label><input type="number" id="principal" value="10000" min="100"/></div>
-          <div class="field"><label>Plan</label><select id="rate"><option value="6.5">Flex Saver — 6.5% p.a.</option><option value="11.2" selected>Fixed Growth — 11.2% p.a.</option><option value="18">Apex Fund — 18% p.a.</option></select></div>
+          <div class="field"><label>Plan</label><select id="rate"><option value="6.5">Flex Saver — 6.5% p.a.</option><option value="11.2" selected>Fixed Growth — 11.2% p.a.</option><option value="18">Apex Growth Fund — 18% target</option></select></div>
           <div class="field"><label>Duration (Months)</label><input type="number" id="months" value="12" min="1" max="60"/></div>
           <button class="calc-btn" onclick="calculate()">Calculate Returns</button>
         </div>
@@ -431,10 +443,10 @@ footer strong{color:var(--gold-lt)}
       <table>
         <thead><tr><th></th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td><div class="tx-icon" style="background:var(--green-bg)">💸</div></td><td><div style="font-weight:600">Interest Payout</div><div style="font-size:11px;color:var(--muted)">Fixed Growth · Jun 1</div></td><td class="mono up">+$1,120</td><td><span class="chip chip-green">Received</span></td></tr>
-          <tr><td><div class="tx-icon" style="background:var(--gold-bg)">➕</div></td><td><div style="font-weight:600">Top-up</div><div style="font-size:11px;color:var(--muted)">Flex Saver · May 28</div></td><td class="mono">$5,000</td><td><span class="chip chip-gold">Invested</span></td></tr>
-          <tr><td><div class="tx-icon" style="background:var(--teal-bg)">🔁</div></td><td><div style="font-weight:600">Auto-reinvest</div><div style="font-size:11px;color:var(--muted)">Apex Fund · May 15</div></td><td class="mono">$843</td><td><span class="chip chip-teal">Reinvested</span></td></tr>
-          <tr><td><div class="tx-icon" style="background:var(--red-bg)">🏧</div></td><td><div style="font-weight:600">Withdrawal</div><div style="font-size:11px;color:var(--muted)">Flex Saver · Apr 30</div></td><td class="mono dn">-$2,000</td><td><span class="chip chip-red">Withdrawn</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--green-bg)">💸</div></td><td><div style="font-weight:600">Interest Payout</div><div style="font-size:11px;color:var(--muted)">Fixed Growth · May 31</div></td><td class="mono">+$245</td><td><span class="chip chip-green">Completed</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--gold-bg)">➕</div></td><td><div style="font-weight:600">Top-up</div><div style="font-size:11px;color:var(--muted)">Flex Saver · May 28</div></td><td class="mono">+$5,000</td><td><span class="chip chip-teal">Completed</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--teal-bg)">🔁</div></td><td><div style="font-weight:600">Auto-reinvest</div><div style="font-size:11px;color:var(--muted)">Apex Fund · May 15</div></td><td class="mono">+$182</td><td><span class="chip chip-blue">Reinvested</span></td></tr>
+          <tr><td><div class="tx-icon" style="background:var(--red-bg)">🏧</div></td><td><div style="font-weight:600">Withdrawal</div><div style="font-size:11px;color:var(--muted)">Flex Saver · May 1</div></td><td class="mono">-$2,000</td><td><span class="chip chip-teal">Completed</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -497,7 +509,7 @@ footer strong{color:var(--gold-lt)}
     <div class="admin-stat"><div class="admin-stat-lbl">Platform Status</div><div class="admin-stat-val" style="color:var(--green);font-size:18px">● Live</div></div>
   </div>
   <div class="card">
-    <div class="card-hd"><div class="card-title">Registered Users</div><button class="btn" style="background:var(--gold-bg);color:var(--gold);font-size:12px;padding:6px 14px" onclick="renderAdminTable()">↻ Refresh</button></div>
+    <div class="card-hd"><div class="card-title">Registered Users</div><button class="btn" style="background:var(--gold-bg);color:var(--gold);font-size:12px;padding:6px 14px" onclick="renderAdminTable()">Refresh</button></div>
     <div style="overflow-x:auto">
       <table>
         <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Actions</th></tr></thead>
@@ -518,7 +530,7 @@ footer strong{color:var(--gold-lt)}
 /* ── UTILS ── */
 function fmt(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-function showMsg(id,msg,type){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';if(type==='error')el.className='auth-error';else el.className='auth-success';setTimeout(()=>{el.style.display='none';},4000);}
+function showMsg(id,msg,type){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';if(type==='error')el.className='auth-error';else el.className='auth-success';setTimeout(()=>{el.style.display='none'},4000);}
 
 /* ── STORAGE ── */
 function getUsers(){try{return JSON.parse(localStorage.getItem('av_users')||'{}');}catch(e){return{};}}
