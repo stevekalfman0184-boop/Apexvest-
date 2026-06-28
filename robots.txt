@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://apexvest.onrender.com/sitemap.xml
